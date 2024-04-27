@@ -1,77 +1,86 @@
 package br.edu.fateczl.aula02;
 
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import br.edu.fateczl.aula02.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    private EditText etValorA;
+    private EditText etValorB;
+    private EditText etValorC;
+    private TextView tvEquacaoStatus;
+    private TextView tvx1;
+    private TextView tvx2;
+    private Button btnCalcular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
-            }
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
         });
+
+        etValorA = findViewById(R.id.etValorA);
+        etValorA.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        etValorB = findViewById(R.id.etValorB);
+        etValorB.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        etValorC = findViewById(R.id.etValorC);
+        etValorC.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        tvEquacaoStatus = findViewById(R.id.tvEquacaoStatus);
+        tvEquacaoStatus.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        tvx1 = findViewById(R.id.tvx1);
+        tvx1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        tvx2 = findViewById(R.id.tvx2);
+        tvx2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        btnCalcular = findViewById(R.id.btnCalcular);
+
+        btnCalcular.setOnClickListener(op -> Calculo());
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    private void Calculo(){
+        float valorA = Float.parseFloat(etValorA.getText().toString());
+        float valorB = Float.parseFloat(etValorB.getText().toString());
+        float valorC = Float.parseFloat(etValorC.getText().toString());
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        if (valorA != 0){
+            double delta = ((valorB*valorB)- 4 * valorA * valorC);
+            if ( delta < 0){
+                String tvEqucaoS = "Equação não tem raízes reais. Delta = " + delta;
+                tvEquacaoStatus.setText(tvEqucaoS);
+                tvx1.setText(" ");
+                tvx2.setText(" ");
+            } else {
+                double x1 = (((valorB * (-1)) + (Math.sqrt(delta)))/(2*valorA));
+                double x2 = (((valorB * (-1)) - (Math.sqrt(delta)))/(2*valorA));
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+                String tvEqucaoS = " ";
+                tvEquacaoStatus.setText(tvEqucaoS);
+
+                String tvX1 = getString(R.string.resultado1) + " " + x1;
+                String tvX2 = getString(R.string.resultado2) + " " + x2;
+                tvx1.setText(tvX1);
+                tvx2.setText(tvX2);
+            }
+        } else {
+            String tvEqucaoS = "Não se trata de uma equação de segundo grau";
+            tvEquacaoStatus.setText(tvEqucaoS);
+            tvx1.setText(" ");
+            tvx2.setText(" ");
         }
 
-        return super.onOptionsItemSelected(item);
-    }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }
