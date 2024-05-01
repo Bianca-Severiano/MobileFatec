@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Exercicio3.2</string>
+    <string name="titulo">Calcula Autonomia de Veículo</string>
+    <string name="consumo">Consumo do veículo (Km/l)</string>
+    <string name="combustivel">Combustível disponível (l)</string>
+    <string name="autonomia">O veículo ainda pode percorrer</string>
+    <string name="btnCalcular">Calcular Autonomia</string>
+</resources>
