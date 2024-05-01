@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Aula03.1</string>
+    <string name="titulo">Cálcula Combustíveis</string>
+    <string name="gasolina">Valor da Gasolina (1l)</string>
+    <string name="etanol">Valor do Etanol (1l)</string>
+    <string name="calcular">Calcular</string>
+    <string name="resultado">Nesse cenário é mais vantajoso abastecer com: </string>
+</resources>
