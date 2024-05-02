@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Aula04</string>
+    <string name="dia">Dia</string>
+    <string name="mes">Mês</string>
+    <string name="ano">Ano</string>
+    <string name="calcular">Calcular Idade</string>
+    <string name="resultado">Resultado: </string>
+    <string name="titulo">Calculadora de Idade </string>
+    <string name="dataE">Data digitada é inválida</string>
+
+</resources>
