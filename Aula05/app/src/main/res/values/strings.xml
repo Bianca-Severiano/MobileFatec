@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Aula05</string>
+    <string name="titulo">App Dados</string>
+    <string name="question">Quantos dados você deseja rolar?</string>
+    <string name="question2">Quantas faces os dados devem ter?</string>
+    <string name="n1">1 Dado</string>
+    <string name="n2">2 Dados</string>
+    <string name="n3">3 Dados</string>
+    <string name="btnJogar">Jogar Dados</string>
+    <string name="saidas">Saídas obtidas: \n</string>
+</resources>
