@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Aula06</string>
+    <string name="question1">Qual tipo de professor?</string>
+    <string name="horista">Professor Horista</string>
+    <string name="titular">Professor Titular</string>
+    <string name="btnCalcular">Calcular Salário</string>
+    <string name="btnProsseguir">Prosseguir</string>
+    <string name="btnVoltar">Voltar</string>
+    <string name="result">O novo salário é de R$</string>
+    <string name="title">Calculadora de Salário</string>
+    <string name="titleHorista">Calculadora de Salário - Horista</string>
+    <string name="titleTitular">Calculadora de Salário - Titular</string>
+    <string name="horistaHT">Valor/Hora</string>
+    <string name="horistaH">Horas Trabalhadas</string>
+    <string name="titularS">Salário Atual</string>
+    <string name="titularAI">Anos na instituição</string>
+</resources>
