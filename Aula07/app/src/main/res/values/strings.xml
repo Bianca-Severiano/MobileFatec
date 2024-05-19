@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Aula07</string>
+    <string name="titlle">Contas Bancárias</string>
+    <string name="question1">Selecione o tipo de conta:</string>
+    <string name="question2">Selecione o tipo de operação que deseja realizar:</string>
+    <string name="question3">Preencha os campos:</string>
+    <string name="button1">Cadastrar</string>
+    <string name="button2">Realizar Operação</string>
+    <string name="contaEspecial">Conta Especial</string>
+    <string name="contaPoupanca">Conta Poupança</string>
+    <string name="nomeCliente">Nome do Cliente</string>
+    <string name="numeroConta">Numero da Conta</string>
+    <string name="contaSaldo">Saldo da Conta</string>
+    <string name="diaRendimento">Dia Rendimento</string>
+    <string name="contaLimite">Limite</string>
+    <string name="title_activity_operacoes">Operacoes</string>
+    <string name="deposito">Depositar</string>
+    <string name="saque">Sacar</string>
+    <string name="listar">Listar</string>
+    <string name="valorr">Valor</string>
+    <string name="rendimento">Rendimento</string>
+    <string name="rendimentotx">Taxa de Rendimento</string>
+</resources>

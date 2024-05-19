@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Aula08</string>
+    <string name="titulo">Compre seu Ingresso!</string>
+    <string name="valor">Valor do Ingresso</string>
+    <string name="id">Identificador</string>
+    <string name="funcao">Função</string>
+    <string name="taxa">Taxa</string>
+    <string name="VIP">VIP</string>
+    <string name="finalTela">Compra Finalizada</string>
+    <string name="calcular">Prosseguir</string>
+    <string name="voltar">Voltar</string>
+    <string name="saidaTitulo">Confirme as informações:</string>
+
+</resources>
