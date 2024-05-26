@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Tarefa 09</string>
+    <string name="item1">Atleta Juvenil</string>
+    <string name="item2">Atleta Senior</string>
+    <string name="item3">Atleta (Outro)</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nome">Nome</string>
+    <string name="bairro">Bairro</string>
+    <string name="dtNasc">Data de Nascimento</string>
+    <string name="tempoPratica">Anos de Prática</string>
+    <string name="problemaCardiaco">Problemas Cardíacos?</string>
+    <string name="academia">Academia</string>
+    <string name="recorde">Seu recorde (segundos)</string>
+    <string name="btnProsseguir">Prosseguir</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+</resources>
