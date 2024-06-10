@@ -1,64 +1,125 @@
 package br.edu.fateczl.trabalhosemestral;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CadastroCliente#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.sql.SQLException;
+
+import br.edu.fateczl.trabalhosemestral.controller.ClienteController;
+import br.edu.fateczl.trabalhosemestral.model.Cliente;
+import br.edu.fateczl.trabalhosemestral.model.ClientePadrao;
+import br.edu.fateczl.trabalhosemestral.persistence.ClienteDao;
+
+
 public class CadastroCliente extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private Fragment fragment;
+    private View view;
+    private Button btnVoltarLogin;
+    private Button btnSeguirCadastro;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText nome;
+    private EditText CPF;
+    private EditText email;
+    private EditText senha;
+    private EditText confSenha;
+
+    private TextView Saidaerro;
+
+    private ClienteController cCont;
 
     public CadastroCliente() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CadastroCliente.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CadastroCliente newInstance(String param1, String param2) {
-        CadastroCliente fragment = new CadastroCliente();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        super();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cadastro_cliente, container, false);
+        view = inflater.inflate(R.layout.fragment_cadastro_cliente, container, false);
+        btnVoltarLogin = view.findViewById(R.id.btnVoltarCadastro);
+        btnSeguirCadastro = view.findViewById(R.id.btnProsseguir);
+
+        nome = view.findViewById(R.id.etNomeCliente);
+        CPF = view.findViewById(R.id.etCPF);
+        email = view.findViewById(R.id.etEmailCliente);
+        senha = view.findViewById(R.id.etSenha1);
+        confSenha = view.findViewById(R.id.etSenha2);
+        Saidaerro = view.findViewById(R.id.erro);
+
+        btnVoltarLogin.setOnClickListener(op -> voltarInicio());
+        btnSeguirCadastro.setOnClickListener(op -> cadastro());
+
+        cCont = new ClienteController(new ClienteDao(view.getContext()));
+        return view;
     }
+
+
+    private ClientePadrao CriaClientePadrao() {
+        ClientePadrao c = new ClientePadrao();
+        c.setNome(nome.getText().toString());
+        c.setCPF(CPF.getText().toString());
+        c.setEmail(email.getText().toString());
+        c.setSenha(senha.getText().toString());
+
+        return c;
+    }
+
+    private void cadastro() {
+        String i = validaCampos();
+        if (i == ""){
+            try {
+                ClientePadrao cliente = CriaClientePadrao();
+                cCont.inserir(cliente);
+                voltarLogin();
+            } catch (SQLException | ClassNotFoundException e){
+                Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        } else{
+            Saidaerro.setText(i);
+        }
+    }
+
+    private String validaCampos() {
+        if (!senha.getText().toString().equals(confSenha.getText().toString()) && (!senha.getText().toString().isEmpty())) {
+            return "As senhas não conferem e/ou são nulas";
+        }
+
+        if (nome.getText().toString().isEmpty() || CPF.getText().toString().isEmpty() || email.getText().toString().isEmpty() || senha.getText().toString().isEmpty()){
+            return  "Um ou mais campos podem não ter sido preenchidos";
+        }
+
+        return "";
+    }
+
+    private void voltarInicio() {
+        Intent i = new Intent(view.getContext(), MainActivity.class);
+        this.startActivity(i);
+        getActivity().finish();
+    }
+
+    private void voltarLogin() {
+        fragment = new Login();
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.Fragment, fragment);
+        fragmentTransaction.commit();
+    }
+
 }
+

@@ -1,24 +1,44 @@
 package br.edu.fateczl.trabalhosemestral.model;
 
-public class Debito extends FormaPagamentoClube {
+public class PagamentoDebitoConta extends FormaPagamentoClube {
 
-    private String chave;
+    private String banco;
+    private int agencia;
+    private int conta;
 
-    public Debito() {
+    public PagamentoDebitoConta() {
         super();
     }
 
-    public String getChave() {
-        return chave;
+    public String getBanco() {
+        return banco;
     }
 
-    public void setChave(String chave) {
-        this.chave = chave;
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
+
+    public int getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(int agencia) {
+        this.agencia = agencia;
+    }
+
+    public int getConta() {
+        return conta;
+    }
+
+    public void setConta(int conta) {
+        this.conta = conta;
     }
 
     @Override
     public String toString() {
         return super.toString() +
-                ", Chave: " + chave;
+                ", Banco: " + banco +
+                ", Conta: " + conta +
+                ", Agência: " + agencia;
     }
 }

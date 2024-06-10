@@ -1,22 +1,22 @@
 package br.edu.fateczl.trabalhosemestral.model;
 
-public abstract class FormaPagamento {
+public abstract class FormaPagamentoClube {
 
-    private String nomeTitular;
+    private String Titular;
     private String tipo;
 
 
-    public FormaPagamento() {
+
+    public FormaPagamentoClube() {
      super();
     }
 
-
     public String getNomeTitular() {
-        return nomeTitular;
+        return Titular;
     }
 
-    public void setNomeTitular(String nomeTitular) {
-        this.nomeTitular = nomeTitular;
+    public void setNomeTitular(String c) {
+        this.Titular = c;
     }
 
     public String getTipo() {
@@ -30,7 +30,7 @@ public abstract class FormaPagamento {
     @Override
     public String toString() {
         return "FormaPagamento =>" +
-                " Nome do Titular: " + nomeTitular +
+                " Nome do Titular: " + Titular +
                 " Tipo: " + tipo;
     }
 }

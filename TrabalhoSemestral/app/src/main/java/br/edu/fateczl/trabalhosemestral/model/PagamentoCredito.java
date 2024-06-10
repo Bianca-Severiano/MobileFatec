@@ -1,12 +1,12 @@
 package br.edu.fateczl.trabalhosemestral.model;
 
-public class Cartao extends FormaPagamentoClube{
+public class PagamentoCredito extends FormaPagamentoClube{
 
     private int numeroCartao;
     private int cvv;
     private  String vencimento;
 
-    public Cartao() {
+    public PagamentoCredito() {
         super();
     }
 
